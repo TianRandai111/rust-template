@@ -1,0 +1,40 @@
+# Git files
+.git
+.gitignore
+
+# Target directory (build artifacts)
+target/
+Cargo.lock
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Documentation
+*.md
+!README.md
+
+# Config files
+.pre-commit-config.yaml
+_typos.toml
+cliff.toml
+deny.toml
+cargo-generate.toml
+
+# Docker files
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Assets
+assets/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
