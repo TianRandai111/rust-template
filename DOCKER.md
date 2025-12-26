@@ -9,7 +9,6 @@
 - **VictoriaMetrics**: 时间序列数据库，用于存储指标数据
 - **VictoriaLogs**: 日志管理系统
 - **VictoriaTraces**: 分布式追踪系统
-- **Rust应用**: 主应用程序
 
 ### 快速开始
 
@@ -72,14 +71,8 @@ docker run -d --name victorialogs -p 9428:9428 \
 ```bash
 docker run -d --name victoriatraces -p 10428:10428 \
   -v victoria-traces-data:/victoria-traces-data \
-  docker.io/victoriametrics/victoria-traces:latest
-```
-
-#### 3. 构建 Rust 应用
-
-```bash
-docker build -t rust-app .
-docker run -d --name rust-app rust-app
+  docker.io/victoriametrics/victoria-traces:latest \
+  -storageDataPath=/victoria-traces-data
 ```
 
 ### 服务端口
@@ -105,14 +98,6 @@ docker run -d --name rust-app rust-app
 - 所有三个 Victoria 服务
 - 自定义网络配置
 - 数据卷配置
-- 服务依赖关系
-
-#### Dockerfile
-
-多阶段构建的 Dockerfile：
-
-1. **构建阶段**: 使用 Rust 官方镜像编译应用
-2. **运行阶段**: 使用轻量级 Debian 镜像运行应用
 
 ### 常用命令
 
@@ -140,7 +125,6 @@ This project includes a complete Docker configuration for the VictoriaMetrics mo
 - **VictoriaMetrics**: Time-series database for storing metrics
 - **VictoriaLogs**: Log management system
 - **VictoriaTraces**: Distributed tracing system
-- **Rust Application**: Main application
 
 ### Quick Start
 
@@ -203,14 +187,8 @@ docker run -d --name victorialogs -p 9428:9428 \
 ```bash
 docker run -d --name victoriatraces -p 10428:10428 \
   -v victoria-traces-data:/victoria-traces-data \
-  docker.io/victoriametrics/victoria-traces:latest
-```
-
-#### 3. Building the Rust Application
-
-```bash
-docker build -t rust-app .
-docker run -d --name rust-app rust-app
+  docker.io/victoriametrics/victoria-traces:latest \
+  -storageDataPath=/victoria-traces-data
 ```
 
 ### Service Ports
@@ -236,14 +214,6 @@ This file defines the complete service stack, including:
 - All three Victoria services
 - Custom network configuration
 - Volume configuration
-- Service dependencies
-
-#### Dockerfile
-
-Multi-stage Dockerfile:
-
-1. **Build stage**: Compile application using official Rust image
-2. **Runtime stage**: Run application using lightweight Debian image
 
 ### Common Commands
 

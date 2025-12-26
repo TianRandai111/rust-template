@@ -43,23 +43,6 @@ services:
     networks:
       - victoria-network
 
-  # Rust application (optional)
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: rust-app
-    depends_on:
-      - victoriametrics
-      - victorialogs
-      - victoriatraces
-    networks:
-      - victoria-network
-    environment:
-      - VICTORIA_METRICS_URL=http://victoriametrics:8428
-      - VICTORIA_LOGS_URL=http://victorialogs:9428
-      - VICTORIA_TRACES_URL=http://victoriatraces:10428
-
 volumes:
   vmdata:
   victoria-logs-data:

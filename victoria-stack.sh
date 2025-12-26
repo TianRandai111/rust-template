@@ -114,7 +114,6 @@ Services:
     victoriametrics   Time-series database
     victorialogs      Log management system
     victoriatraces    Distributed tracing system
-    app               Rust application
 
 Examples:
     $0 start                    # Start all services
