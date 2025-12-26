@@ -81,3 +81,29 @@ cargo nextest 是一个 Rust 增强测试工具。
 ```bash
 cargo install cargo-nextest --locked
 ```
+
+## Docker 部署
+
+本项目包含完整的 Docker 和 VictoriaMetrics 监控栈配置。
+
+### 快速开始
+
+使用 docker-compose 启动所有服务：
+
+```bash
+docker compose up -d
+```
+
+或使用管理脚本：
+
+```bash
+./victoria-stack.sh start
+```
+
+详细的 Docker 部署说明请参考 [DOCKER.md](DOCKER.md)。
+
+### 服务端口
+
+- VictoriaMetrics: http://localhost:8428
+- VictoriaLogs: http://localhost:9428
+- VictoriaTraces: http://localhost:10428

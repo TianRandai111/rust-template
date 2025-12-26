@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # VictoriaMetrics - Time series database
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:latest
+    container_name: victoriametrics
+    ports:
+      - "8428:8428"
+    volumes:
+      - vmdata:/victoria-metrics-data
+    command:
+      - "-storageDataPath=/victoria-metrics-data"
+    restart: unless-stopped
+    networks:
+      - victoria-network
+
+  # VictoriaLogs - Log management system
+  victorialogs:
+    image: docker.io/victoriametrics/victoria-logs:latest
+    container_name: victorialogs
+    ports:
+      - "9428:9428"
+    volumes:
+      - victoria-logs-data:/victoria-logs-data
+    command:
+      - "-storageDataPath=/victoria-logs-data"
+    restart: unless-stopped
+    networks:
+      - victoria-network
+
+  # VictoriaTraces - Distributed tracing system
+  victoriatraces:
+    image: docker.io/victoriametrics/victoria-traces:latest
+    container_name: victoriatraces
+    ports:
+      - "10428:10428"
+    volumes:
+      - victoria-traces-data:/victoria-traces-data
+    command:
+      - "-storageDataPath=/victoria-traces-data"
+    restart: unless-stopped
+    networks:
+      - victoria-network
+
+volumes:
+  vmdata:
+  victoria-logs-data:
+  victoria-traces-data:
+
+networks:
+  victoria-network:
+    driver: bridge
