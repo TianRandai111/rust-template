@@ -91,7 +91,7 @@ cargo install cargo-nextest --locked
 使用 docker-compose 启动所有服务：
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 或使用管理脚本：

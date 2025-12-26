@@ -31,8 +31,13 @@ check_dependencies() {
         exit 1
     fi
 
-    if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
-        print_error "docker-compose is not installed. Please install docker-compose first."
+    # Check for docker compose (new) or docker-compose (old)
+    if docker compose version &> /dev/null; then
+        COMPOSE_CMD="docker compose"
+    elif command -v docker-compose &> /dev/null; then
+        COMPOSE_CMD="docker-compose"
+    else
+        print_error "docker compose is not installed. Please install docker compose first."
         exit 1
     fi
 }
@@ -40,7 +45,7 @@ check_dependencies() {
 # Start all services
 start_services() {
     print_info "Starting VictoriaMetrics stack..."
-    docker-compose up -d
+    $COMPOSE_CMD up -d
     print_info "Services started successfully!"
     print_info "VictoriaMetrics: http://localhost:8428"
     print_info "VictoriaLogs: http://localhost:9428"
@@ -50,29 +55,29 @@ start_services() {
 # Stop all services
 stop_services() {
     print_info "Stopping VictoriaMetrics stack..."
-    docker-compose down
+    $COMPOSE_CMD down
     print_info "Services stopped successfully!"
 }
 
 # Restart all services
 restart_services() {
     print_info "Restarting VictoriaMetrics stack..."
-    docker-compose restart
+    $COMPOSE_CMD restart
     print_info "Services restarted successfully!"
 }
 
 # Show service status
 show_status() {
     print_info "Service status:"
-    docker-compose ps
+    $COMPOSE_CMD ps
 }
 
 # Show logs
 show_logs() {
     if [ -z "$1" ]; then
-        docker-compose logs -f
+        $COMPOSE_CMD logs -f
     else
-        docker-compose logs -f "$1"
+        $COMPOSE_CMD logs -f "$1"
     fi
 }
 
@@ -82,7 +87,7 @@ cleanup() {
     read -p "Are you sure? (yes/no): " confirm
     if [ "$confirm" = "yes" ]; then
         print_info "Cleaning up..."
-        docker-compose down -v
+        $COMPOSE_CMD down -v
         print_info "Cleanup completed!"
     else
         print_info "Cleanup cancelled."

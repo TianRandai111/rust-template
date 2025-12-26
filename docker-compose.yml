@@ -37,6 +37,8 @@ services:
       - "10428:10428"
     volumes:
       - victoria-traces-data:/victoria-traces-data
+    command:
+      - "-storageDataPath=/victoria-traces-data"
     restart: unless-stopped
     networks:
       - victoria-network

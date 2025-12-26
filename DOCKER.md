@@ -18,31 +18,31 @@
 启动所有服务：
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 查看运行状态：
 
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
 查看日志：
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 停止所有服务：
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 停止服务并删除数据卷：
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 #### 2. 单独运行服务
@@ -118,17 +118,17 @@ docker run -d --name rust-app rust-app
 
 ```bash
 # 重启特定服务
-docker-compose restart victoriametrics
+docker compose restart victoriametrics
 
 # 查看特定服务的日志
-docker-compose logs -f victoriametrics
+docker compose logs -f victoriametrics
 
 # 进入容器内部
-docker-compose exec victoriametrics sh
+docker compose exec victoriametrics sh
 
 # 更新服务
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 ---
@@ -149,31 +149,31 @@ This project includes a complete Docker configuration for the VictoriaMetrics mo
 Start all services:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Check service status:
 
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
 View logs:
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 Stop all services:
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 Stop services and remove data volumes:
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 #### 2. Running Services Individually
@@ -249,15 +249,15 @@ Multi-stage Dockerfile:
 
 ```bash
 # Restart a specific service
-docker-compose restart victoriametrics
+docker compose restart victoriametrics
 
 # View logs for a specific service
-docker-compose logs -f victoriametrics
+docker compose logs -f victoriametrics
 
 # Enter container shell
-docker-compose exec victoriametrics sh
+docker compose exec victoriametrics sh
 
 # Update services
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```

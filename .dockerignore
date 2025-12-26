@@ -4,7 +4,6 @@
 
 # Target directory (build artifacts)
 target/
-Cargo.lock
 
 # IDE files
 .vscode/
